@@ -1,5 +1,10 @@
 name: Build Tauri App (Windows focus)
 
+permissions:
+  contents: write   # ← добавь эту строку для создания релизов
+  actions: write
+  checks: write
+
 on:
   push:
     branches: [ main ]
