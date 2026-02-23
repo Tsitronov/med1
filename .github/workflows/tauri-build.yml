@@ -1,4 +1,4 @@
-name: Build Tauri App
+name: Build Tauri App (Windows focus)
 
 on:
   push:
@@ -7,12 +7,8 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
-    strategy:
-      matrix:
-        platform: [windows-latest, ubuntu-latest, macos-latest]
-
-    runs-on: ${{ matrix.platform }}
+  build-windows:
+    runs-on: windows-latest
 
     steps:
       - uses: actions/checkout@v4
@@ -24,28 +20,8 @@ jobs:
 
       - name: Install Rust
         uses: dtolnay/rust-toolchain@stable
-
-      - name: Install dependencies (Ubuntu)
-        if: matrix.platform == 'ubuntu-latest'
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y \
-            libgtk-3-dev \
-            libwebkit2gtk-6.0-dev \
-            libappindicator3-dev \
-            librsvg2-dev \
-            patchelf \
-            libayatana-appindicator3-dev \
-            libxdo-dev \
-            libxfixes-dev \
-            libxcb-shape0-dev \
-            libxcb-xfixes0-dev \
-            libssl-dev \
-            pkg-config \
-            build-essential \
-            curl \
-            wget \
-            libclang-dev
+        with:
+          targets: x86_64-pc-windows-msvc
 
       - name: Install frontend dependencies
         run: npm install
@@ -57,6 +33,6 @@ jobs:
         with:
           tagName: v__VERSION__
           releaseName: "Med1 v__VERSION__"
-          releaseBody: "Автоматическая сборка Med1"
+          releaseBody: "Автоматическая сборка Med1 для Windows"
           releaseDraft: true
           prerelease: false
