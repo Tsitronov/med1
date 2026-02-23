@@ -1,0 +1,31 @@
+{
+  "patient": {
+    "name": "Maria Rossi"
+  },
+  "medicines": [
+    {
+      "id": 1,
+      "name": "Aspirina",
+      "times": ["08:00"]
+    },
+    {
+      "id": 2,
+      "name": "Metformina",
+      "times": ["12:00", "20:00"]
+    }
+  ],
+  "history": [
+    {
+      "date": "2026-02-16",
+      "medicineId": 1,
+      "time": "08:00",
+      "taken": true
+    },
+    {
+      "date": "2026-02-16",
+      "medicineId": 2,
+      "time": "12:00",
+      "taken": false
+    }
+  ]
+}
